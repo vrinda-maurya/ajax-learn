@@ -14,7 +14,7 @@
     <div>
         <h1 style="margin-left: 600px;"><u>Public data of USA</u></h1>
     </div>
-    <h5 style="margin-left: 120px; ">Click on the button for the relevant data:</h5>
+    <h5 style="margin-left: 120px; ">Click on the button to get relevant data:</h5>
     <button style="margin-left:500px;margin-top:-50px;width: 100px;" type="button" class="btn btn-outline-success"
         id="btn">Data</button>
     <div class="container">
@@ -43,7 +43,7 @@
 
     $(document).ready(function () {
         $("#btn").click(function () {
-        $("#id_body").html("")
+            $("#id_body").html("")
 
             $.ajax({
                 type: 'GET',
@@ -51,22 +51,22 @@
                 data: {},
                 success: function (response) {
                     console.log(response);
-                    for(i=0;i<response.data.length;i++){
+                    for (i = 0; i < response.data.length; i++) {
                         var row = "<tr><td>" + response.data[i]["ID Nation"] + "</td><td>"
                             + response.data[i]["Nation"] + "</td><td>"
                             + response.data[i]["ID Year"] + "</td><td>"
                             + response.data[i]["Year"] + "</td><td>"
                             + response.data[i]["Population"] + "</td><td>"
-                            + response.data[i]["Slug Nation"] + 
+                            + response.data[i]["Slug Nation"] +
                             "</td></tr>"
 
-                            $("#id_body").append(row);
+                        $("#id_body").append(row);
                     }
-                       
 
 
-                        
-                   
+
+
+
 
 
                 }
