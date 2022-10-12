@@ -1,4 +1,4 @@
-[
+const response=[
     {
         "state-province": null,
         "alpha_two_code": "GB",
@@ -2105,3 +2105,8 @@
         ]
     }
 ]
+console.log(typeof(response))
+console.log(response[0].web_pages)
+console.log(response[0].name)
+console.log(response[0].country)
+console.log(response[0].domains)
