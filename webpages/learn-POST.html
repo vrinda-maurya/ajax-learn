@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="id_input" value="Deepak" />
+    <button id="id_btn">Submit</button>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script>
+        $("#id_btn").click(function () {
+            const value = $("#id_input").val().trim();
+            $.ajax({
+                type: "POST",
+                url: "https://httpbin.org/post",
+                data: { name: value, sirname: "Balhara" },
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+                complete: function (error) {
+                    console.log("done")
+                },
+            });
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>

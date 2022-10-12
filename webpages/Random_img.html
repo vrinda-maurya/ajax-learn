@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="id_btn">click</button>
+    <button id="id_clear">clear</button>
+    <div class="container"><img src="" id="id_loader" style="width:30%;height:30%;border: 2px solid black;"></div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <script>
+        $("#id_btn").click(function () {
+            $.ajax({
+                url: "https://dog.ceo/api/breeds/image/random",
+                type: "GET",
+                data: {},
+                success: function (response) {
+                    var imagePath = response.message;
+                    $("#id_loader").attr("src", imagePath);
+                },
+            });
+        });
+        $("#id_clear").click(function () {
+
+            $("#id_loader").attr("src", "");                   /*dont use remove here it will delete the whole element*/
+        })
+    </script>
+
+</body>
+
+</html>

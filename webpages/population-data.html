@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USA Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body style="  background: linear-gradient(to left, #6600ff 0%, #ff0066 100%);">
+    <div>
+        <h1 style="margin-left: 600px;"><u>Public data of USA</u></h1>
+    </div>
+    <h5 style="margin-left: 120px; ">Click on the button for the relevant data:</h5>
+    <button style="margin-left:500px;margin-top:-50px;width: 100px;" type="button" class="btn btn-outline-success"
+        id="btn">Data</button>
+    <div class="container">
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr class="table-danger">
+                    <th>Nation ID</th>
+                    <th>Nation</th>
+                    <th>ID Year</th>
+                    <th>Year</th>
+                    <th>Population</th>
+                    <th>Slug Nation</th>
+
+                </tr>
+            </thead>
+            <tbody id="id_body">
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+<script>
+
+    $(document).ready(function () {
+        $("#btn").click(function () {
+        $("#id_body").html("")
+
+            $.ajax({
+                type: 'GET',
+                url: 'https://datausa.io/api/data?drilldowns=Nation&measures=Population',
+                data: {},
+                success: function (response) {
+                    console.log(response);
+                    for(i=0;i<response.data.length;i++){
+                        var row = "<tr><td>" + response.data[i]["ID Nation"] + "</td><td>"
+                            + response.data[i]["Nation"] + "</td><td>"
+                            + response.data[i]["ID Year"] + "</td><td>"
+                            + response.data[i]["Year"] + "</td><td>"
+                            + response.data[i]["Population"] + "</td><td>"
+                            + response.data[i]["Slug Nation"] + 
+                            "</td></tr>"
+
+                            $("#id_body").append(row);
+                    }
+                       
+
+
+                        
+                   
+
+
+                }
+            });
+
+
+
+        });
+
+    });
+
+
+
+</script>
+
+</html>

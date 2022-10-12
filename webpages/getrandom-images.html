@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body style="background-color: #f2f2f2">
+    <div class="container">
+      <br />
+      <h3>Get Dogs Image using Ajax </h3>
+      <hr />
+      <!-- <select
+        class="form-control"
+        style="width: 200px; float: left; margin-right: 20px"
+      >
+        <option value="">Choose Something</option>
+        <option value="jokes">Jokes</option>
+        <option value="dogs">Dogs</option>
+      </select> -->
+
+      <input
+        class="form-control"
+        value="8"
+        type="number"
+        id="id_input"
+        style="width: 200px; float: left; margin-right: 20px"
+      />
+      <button class="btn btn-success" id="id_btn">Get Images</button>
+      <button class="btn btn-warning" id="id_btn_clear">Clear</button>
+      <br />
+      <br />
+      <div id="id_div"></div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      $("#id_btn_clear").click(function () {
+        $("#id_div").html("");
+      });
+
+      $("#id_btn").click(function () {
+        $("#id_div").html("");
+        const value = $("#id_input").val().trim();
+
+        for (var i = 0; i < value; i++) {
+          $.ajax({
+            type: "GET",
+            url: "https://dog.ceo/api/breeds/image/random",
+            data: {},
+            success: function (response) {
+              var imageURL = response.message;
+              $("#id_div").append(
+                '<img class="img-thumbnail" style="width:280px;height:300px; border:4px solid black; margin: 10px" src="' +
+                  imageURL +
+                  '" />'
+              );
+            },
+            error: function (error) {
+              console.log(error);
+            },
+            complete: function (error) {
+              console.log("done");
+            },
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

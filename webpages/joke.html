@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<style>
+    button {
+        background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+        width: 100px;
+        height: 30px;
+        border-radius: 5px;
+        border: 2px solid #33ccff;
+    }
+</style>
+</head>
+
+<body>
+    <div class="container"><br>
+
+
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" type="number" id="id_input">
+                </div>
+                <div class="col">
+                    <button id="id_get_joke">Get jokes</button>
+                </div>
+                <div class="col">
+                    <button id="id_clear">clear</button>
+                </div>
+            </div>
+        </div><br>
+
+        <table class="table table-hover table-dark">
+            <thead>
+                <thead>
+                    <tr>
+                    <th>Id</th>
+                    <th>Type</th>
+                    <th>Setup</th>
+                    <th>Punchline</th>
+                </tr>
+
+                </thead>
+            </thead>
+            <tbody id="id_tbody">
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <script>
+
+        $("#id_get_joke").click(function () {
+            // $("#id_tbody").html("")
+
+            var input = $("#id_input").val();
+            for (i = 0; i < input; i++) {
+                $.ajax({
+                    url: "https://official-joke-api.appspot.com/random_joke",
+                    type: "GET",
+                    data: {},
+                    success: function (response) {
+                        var row = "<tr><td>" + response.id + "</td><td>" + response.type + "</td><td>" + response.setup + "</td><td>" + response.punchline + "</td></tr>";
+                        $("#id_tbody").append(row)
+                    }
+
+
+
+                });
+            }
+        });
+        $("#id_clear").click(function () {
+            $("#id_tbody").html("");
+            $("#id_input").val("");
+        })
+
+    </script>
+</body>
+
+</html>

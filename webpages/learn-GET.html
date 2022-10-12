@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+   
+    <select id="id_district">
+
+    </select>
+    <button id="id_btn">click</button>
+    <!-- <button id="id_clear">clear</button> -->
+    <img src="logo.jpg" style="display: none;" id="id_loader">
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <script>
+        $("#id_btn").click(function () {
+            $("#id_loader").show()
+            $.ajax({
+                url: "https://mocki.io/v1/d4867d8b-b5d5-4a48-a4ab-79131b5809b8",
+                type: "GET",
+                data: { name: "vrinda", age: 25 },
+                success: function (response) {
+                    console.log(response);
+                    $("#id_district option").remove();
+                    $("#id_district").append('<option value="">Select</option>');
+                    for (var i = 0; i < response.length; i++) {
+                        // $("#id_district").append('<option value="' + response[i].name + '">' + response[i].city + '</option>');
+                        $("#id_district").append('<option value="' + response[i].city + '">' + response[i].name + '</option>');
+                    };
+                },
+
+            });
+            $("#id_loader").hide(5000)
+        });
+    </script>
+<!-- 
+    <script>
+
+        $("#id_clear").click(function () {
+            
+            $.ajax({
+                url: "https://mocki.io/v1/d4867d8b-b5d5-4a48-a4ab-79131b5809b8",
+                type: "GET",
+                data: { name: "vrinda", age: 25 },
+                success: function (response) {
+                    console.log(response);
+                    $("#id_district option").remove();
+                    $("#id_district").append('<option value="">Select</option>');
+                    for (var i = 0; i < response.length; i++) {
+                // $("#id_district").append('<option value="' + response[i].name + '">' + response[i].city + '</option>');
+                $("#id_district").append('<option value="' + response[i].city + '">' + response[i].name + '</option>');
+            };
+        },
+
+            });
+
+        });
+    </script> -->
+</body>
+
+</html>
